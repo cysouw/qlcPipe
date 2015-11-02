@@ -23,14 +23,13 @@
 
 DOC <- "
 Usage: 
-  simstrings [-h] [-d] [-r DECIMALS] [<STRINGS>...]
+  partition [-h -c CUT <DIST>]
 
-Using the function sim.strings() from the R-package qlcMatrix. Efficient computation of pairwise string similarities using a cosine similarity on bigram vectors.
+This is only an example of using R functions in pipes. Simple partitioning by cutting complete (\'maximum\') hierarchical clustering.
 
 Options:
-  -h, --help      Showing this help text
-  -d, --distance  Return distances instead of similarities
-  -r DECIMALS     Round result to decimals [default: 3]
+  -h, --help  Showing this help text
+  -c CUT      Height of cutting the tree, in fraction of maximum [default: 0.99]
 "
 
 # ==============
@@ -40,42 +39,22 @@ Options:
 attach(docopt::docopt(DOC))
 
 # for piping data
-if (length(STRINGS) == 0) {
-	STRINGS <- scan(file("stdin")
-						, sep = "\n"
-						, quiet = TRUE
-						, what = "character"
-						)
+if (length(DIST) == 0) {
+	DIST <- read.table(file("stdin"), sep = "\t")
 	closeAllConnections() 
 }
 
-# default values are strings by default, not numbers
-r <- as.numeric(r)
+c <- as.numeric(c)
 
 # ======
 # R code
 # ======
 
-library(methods) # this declaration is a bug; should not be necessary
-
-result <- qlcMatrix::sim.strings(STRINGS)
-if (distance) {
-	result <- as.matrix(1 - result)
-} else {
-	result <- as.matrix(result)
-}
-result <- round(result, digits = r)
-
+result <- cutree(hclust(as.dist(DIST)), h = max(DIST) * c)
 
 # =============
 # Return output
 # =============
 
-write.table(result
-	, file = ""
-	, sep = "\t"
-	, row.names = FALSE
-	, col.names = FALSE
-	, quote = FALSE
-	)
+cat(result, sep = "\n")
 	
