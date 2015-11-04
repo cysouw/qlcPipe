@@ -2,7 +2,7 @@
 
 Michael Cysouw <cysouw@mac.com>
 
-Currently, there many different projects using either Python, R, or even Java or basic C++ for analyses of linguistic data. The basic idea of this project is to make simple wrappers around useful algorithms that can then be piped together in the command line. In this way it might become easier to combine different methods from different implementations. For example to link it to the cldf data export, see [here](https://github.com/glottobank/cldf/blob/master/bigger_picture.md)
+Currently, there are many different projects using either Python, R, or even Java or basic C++ for analyses of linguistic data. The basic idea of this project is to make simple wrappers around useful algorithms that can then be piped together in the command line. In this way it might become easier to combine different methods from different implementations. For example to link it to the cldf data export, see [here](https://github.com/glottobank/cldf/blob/master/bigger_picture.md)
 
 As a proof-of-concept, we will be collecting various executables here. However, in the future these executables should become part of the published code of any of the projects.
 
