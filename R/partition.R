@@ -17,19 +17,26 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 # =================
 
+# ============
+# dependencies
+# ============
+
+require(docopt)
+
 # =====
 # usage
 # =====
 
 DOC <- "
 Usage: 
-  partition [-h -c CUT <DIST>]
+  partition [-h -c CUT -s SEP <DIST>]
 
-This is only an example of using R functions in pipes. Simple partitioning by cutting complete (\'maximum\') hierarchical clustering.
+This is only an example of using R functions in pipes. Simple partitioning by cutting complete (\'maximum\') hierarchical clustering. Input <DIST> should be a square distance matrix.
 
 Options:
   -h, --help  Showing this help text
   -c CUT      Height of cutting the tree, in fraction of maximum [default: 0.99]
+  -s SEP      Column separator [default: \t]
 "
 
 # ==============
@@ -40,7 +47,7 @@ attach(docopt::docopt(DOC))
 
 # for piping data
 if (length(DIST) == 0) {
-	DIST <- read.table(file("stdin"), sep = "\t")
+	DIST <- read.table(file("stdin"), sep = s)
 	closeAllConnections() 
 }
 

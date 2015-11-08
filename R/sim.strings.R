@@ -17,6 +17,14 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 # =================
 
+# ============
+# dependencies
+# ============
+
+require(docopt)
+require(qlcMatrix)
+require(methods) # this declaration is a bug in methods; should not be necessary
+
 # =====
 # usage
 # =====
@@ -55,8 +63,6 @@ if (s == "S") {s <- " "}
 # ======
 # R code
 # ======
-
-library(methods) # this declaration is a bug; should not be necessary
 
 result <- qlcMatrix::sim.strings(STRINGS, sep = s)
 if (distance) {
