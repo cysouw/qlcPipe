@@ -21,9 +21,9 @@
 # dependencies
 # ============
 
-require(docopt)
-require(qlcMatrix)
-require(methods) # this declaration is a bug in methods; should not be necessary
+require(docopt, quietly = TRUE)
+require(qlcMatrix, quietly = TRUE)
+require(methods, quietly = TRUE) # this declaration is a bug in methods; should not be necessary
 
 # =====
 # usage

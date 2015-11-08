@@ -21,7 +21,7 @@
 # dependencies
 # ============
 
-require(docopt)
+require(docopt, quietly = TRUE)
 
 # =====
 # usage
